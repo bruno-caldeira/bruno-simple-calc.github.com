@@ -1,12 +1,18 @@
 var buttons = document.getElementsByClassName("btn");
+var clearScreen = false;
 //run through all elements and add eventListener for clicks
 for (var i = 0; i < buttons.length; i++) {
   	buttons[i].addEventListener('click', function(e) {
 		var calcScreen = document.getElementById('screen-calc');
 		var btnVal = this.innerHTML;
 		var screenLength = calcScreen.innerHTML.length;
-		var clearScreen = false;
+		
 
+		//clear screen
+	   	if(clearScreen == true) {
+	   		calcScreen.innerHTML = '';
+	   		clearScreen = false;
+	   	}
 
 	    //Can't repeat symbol or 0. 
 	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) || btnVal == '0' && calcScreen.innerHTML.charAt(screenLength - 1) == '0' ) {
@@ -39,11 +45,12 @@ for (var i = 0; i < buttons.length; i++) {
 			} else {
 				calcScreen.innerHTML = calcScreen.innerHTML / 100;
 			}
+			clearScreen = true;
 			break;
 		//get result
 		case '=':
 			calcScreen.innerHTML = eval(calcScreen.innerHTML);
-			// clearScreen = true;
+			clearScreen = true;
 			break;
 			
 		default:
@@ -63,10 +70,6 @@ for (var i = 0; i < buttons.length; i++) {
 		  
 		}
 
-		//clear screen
-	   	if(btnVal != '' && clearScreen == true) {
-	   		calcScreen.innerHTML = '';
-	   	}
 
 		
 	});
