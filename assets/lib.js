@@ -5,6 +5,14 @@ for (var i = 0; i < buttons.length; i++) {
 		var calcScreen = document.getElementById('screen-calc');
 		var btnVal = this.innerHTML;
 		var screenLength = calcScreen.innerHTML.length;
+		var clearScreen = false;
+
+
+	    //Can't repeat symbol. 
+	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) ) {
+			var deleteLast = calcScreen.innerHTML.slice(0, -1);
+			calcScreen.innerHTML = deleteLast;
+	   	}
 
 		////////with Switch
 		switch(btnVal) {
@@ -17,20 +25,26 @@ for (var i = 0; i < buttons.length; i++) {
 			var deleteLast = calcScreen.innerHTML.slice(0, -1);
 			calcScreen.innerHTML = deleteLast;
 			break;
-		//get result
-		case '=':
-			var substring = "%";
-			//check if % is part of the text on calc screen
-			if (calcScreen.innerHTML.indexOf(substring) > -1) {
+		//calculate %
+		case '%':
+			var substring = '';
+			if (calcScreen.innerHTML.indexOf('+')) {substring = '+'};
+			if (calcScreen.innerHTML.indexOf('-')) {substring = '-'};
+			if (calcScreen.innerHTML.indexOf('/')) {substring = '/'};
+			if (calcScreen.innerHTML.indexOf('*')) {substring = '*'};
+			if (calcScreen.innerHTML.indexOf(substring) > -1 && substring != '') {
 				var percString = calcScreen.innerHTML.split(substring);
-				var percEquation = eval((percString[1] / 100) * percString[0]);
+				var percEquation = eval(percString[1] / 100 * percString[0]);
 				calcScreen.innerHTML = percEquation;
-			}
-		else {
-			var equation = calcScreen.innerHTML;            
-			calcScreen.innerHTML = eval(equation);
+			} else {
+				calcScreen.innerHTML = calcScreen.innerHTML / 100;
 			}
 			break;
+		//get result
+		case '=':
+			calcScreen.innerHTML = eval(calcScreen.innerHTML);
+			break;
+			
 		default:
 			calcScreen.innerHTML += btnVal;
 			break;
@@ -47,11 +61,10 @@ for (var i = 0; i < buttons.length; i++) {
 			calcScreen.innerHTML = maxChar;
 		  
 		}
-		
-	   //Can't repeat symbol. 
-	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) ) {
-			var deleteLast = calcScreen.innerHTML.slice(0, -1);
-			calcScreen.innerHTML = deleteLast;
+
+		//clear screen
+	   	if(btnVal != '' && resultScreen == true) {
+	   		calcScreen.innerHTML = '';
 	   	}
 	});
 };
