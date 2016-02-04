@@ -39,6 +39,8 @@ ul {
 	width: 320px;
 	height: 420px;
 	border-radius: 5px;
+	-webkit-box-shadow: 5px 5px 0px #B2B0B1;
+	-moz-box-shadow: 5px 5px 0px #B2B0B1;
 	box-shadow: 5px 5px 0px #B2B0B1;
 	padding: 15px;
 	display: -webkit-box;
@@ -46,7 +48,9 @@ ul {
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
+	-moz-flex-flow: row wrap;
 	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -65,16 +69,22 @@ ul {
 	margin: 0 auto;
 	padding: 8px 12px;
 	text-align: right;
+	-webkit-box-shadow: inset 0px 4px 0px #424242; 
+	-moz-box-shadow: inset 0px 4px 0px #424242; 
 	box-shadow: inset 0px 4px 0px #424242; 
 	overflow: hidden;
 	position: relative;
+	line-height: 1;
 }
 
 [contentEditable=false]:before{
 	content:attr(data-text);
 	color: rgba(0, 0, 0, 0.1);
+	height: 35px;
+	line-height: 1;
 	position: absolute;
 	left: 13px;
+	bottom: 7px;
 }
 
 .btn {
