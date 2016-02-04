@@ -8,8 +8,8 @@ for (var i = 0; i < buttons.length; i++) {
 		var clearScreen = false;
 
 
-	    //Can't repeat symbol. 
-	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) ) {
+	    //Can't repeat symbol or 0. 
+	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) || btnVal == '0' && calcScreen.innerHTML.charAt(screenLength - 1) == '0' ) {
 			var deleteLast = calcScreen.innerHTML.slice(0, -1);
 			calcScreen.innerHTML = deleteLast;
 	   	}
@@ -28,10 +28,12 @@ for (var i = 0; i < buttons.length; i++) {
 		//calculate %
 		case '%':
 			var substring = '';
-			if (calcScreen.innerHTML.indexOf('+')) {substring = '+'};
-			if (calcScreen.innerHTML.indexOf('-')) {substring = '-'};
-			if (calcScreen.innerHTML.indexOf('/')) {substring = '/'};
-			if (calcScreen.innerHTML.indexOf('*')) {substring = '*'};
+			if (calcScreen.innerHTML.indexOf('+') > -1) {substring = '+'}
+			if (calcScreen.innerHTML.indexOf('-') > -1) {substring = '-'}
+			if (calcScreen.innerHTML.indexOf('/') > -1) {substring = '/'}
+			if (calcScreen.innerHTML.indexOf('*') > -1) {substring = '*'}
+				alert(substring);
+
 			if (calcScreen.innerHTML.indexOf(substring) > -1 && substring != '') {
 				var percString = calcScreen.innerHTML.split(substring);
 				var percEquation = eval(percString[1] / 100 * percString[0]);
@@ -43,6 +45,7 @@ for (var i = 0; i < buttons.length; i++) {
 		//get result
 		case '=':
 			calcScreen.innerHTML = eval(calcScreen.innerHTML);
+			// clearScreen = true;
 			break;
 			
 		default:
@@ -53,7 +56,7 @@ for (var i = 0; i < buttons.length; i++) {
 		//just allow first hit to be a number or minus button
 		if ( screenLength < 1 && (isNaN(btnVal) && btnVal != '-') ) {
 		  calcScreen.innerHTML = '';
-		};
+		}
 
 		//keep max characters 14
 		if( screenLength >= 14 ) {
@@ -63,8 +66,10 @@ for (var i = 0; i < buttons.length; i++) {
 		}
 
 		//clear screen
-	   	if(btnVal != '' && resultScreen == true) {
+	   	if(btnVal != '' && clearScreen == true) {
 	   		calcScreen.innerHTML = '';
 	   	}
+
+		
 	});
 };
