@@ -1,0 +1,122 @@
+/*    $calcColor: #ECECEC;
+$calcShadow: #B2B0B1;
+$mainButtonColor: #636363;
+$mainButtonShadow: #424242;
+$clearButtonColor: #EB894C;
+$clearButtonShadow: #B2683B;
+*/  
+@font-face {
+	font-family: 'digital-7regular';
+	src: url('fonts/digital-7-webfont.eot');
+	src: url('fonts/digital-7-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/digital-7-webfont.woff2') format('woff2'),
+		 url('fonts/digital-7-webfont.woff') format('woff'),
+		 url('fonts/digital-7-webfont.ttf') format('truetype'),
+		 url('fonts/digital-7-webfont.svg#digital-7regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+* { box-sizing: border-box }
+
+body {
+	padding: 30px;
+	font-family: Arial, sans-serif;
+}
+html, body {width: 100%;height: 100%; margin: 0;}
+
+h1 {
+	text-align: center;
+}
+
+ul {
+	list-style: none;
+}
+
+.main-calc {
+	margin: 0 auto;
+	background-color: #ECECEC;
+	width: 320px;
+	height: 420px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 0px #B2B0B1;
+	padding: 15px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.screen,
+.btn {
+	height: 50px;
+	background-color: #636363;
+	border-radius: 5px;
+}
+.screen {
+	width: 100%;
+	font-size: 40px;
+	color: white;
+	font-family: 'digital-7regular', Arial, sans-serif;
+	margin: 0 auto;
+	padding: 8px 12px;
+	text-align: right;
+	box-shadow: inset 0px 4px 0px #424242; 
+	overflow: hidden;
+	position: relative;
+}
+
+[contentEditable=false]:before{
+	content:attr(data-text);
+	color: rgba(0, 0, 0, 0.1);
+	position: absolute;
+	left: 13px;
+}
+
+.btn {
+	width: 60px;
+	height: 50px;
+	cursor: pointer;
+	color: white;
+	font-size: 30px;
+	margin: 0;
+	text-align: center;
+	line-height: 50px;
+	-webkit-box-shadow: 0px 4px 0px #424242;
+	-moz-box-shadow: 0px 4px 0px #424242;
+	box-shadow: 0px 4px 0px #424242;
+	transition: all ease-in-out 0.1s;
+}
+.btn:active {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	margin-bottom: -7px;
+}
+
+.btn-clear {
+	background-color: #EB894C;
+	-webkit-box-shadow: 0px 4px 0px #B2683B;
+	-moz-box-shadow: 0px 4px 0px #B2683B;
+	box-shadow: 0px 4px 0px #B2683B;
+  
+}
+
+.btn-transp {
+	background-color: transparent;
+	color: transparent;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+.btn-bigger {
+	height: 115px;
+	line-height: 115px;
+	position: relative;
+	margin-top: -65px;
+}
