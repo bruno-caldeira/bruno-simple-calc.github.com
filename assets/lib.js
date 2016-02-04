@@ -32,8 +32,6 @@ for (var i = 0; i < buttons.length; i++) {
 			if (calcScreen.innerHTML.indexOf('-') > -1) {substring = '-'}
 			if (calcScreen.innerHTML.indexOf('/') > -1) {substring = '/'}
 			if (calcScreen.innerHTML.indexOf('*') > -1) {substring = '*'}
-				alert(substring);
-
 			if (calcScreen.innerHTML.indexOf(substring) > -1 && substring != '') {
 				var percString = calcScreen.innerHTML.split(substring);
 				var percEquation = eval(percString[1] / 100 * percString[0]);
