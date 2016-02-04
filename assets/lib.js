@@ -7,15 +7,14 @@ for (var i = 0; i < buttons.length; i++) {
 		var btnVal = this.innerHTML;
 		var screenLength = calcScreen.innerHTML.length;
 		
-
 		//clear screen
 	   	if(clearScreen == true) {
 	   		calcScreen.innerHTML = '';
 	   		clearScreen = false;
 	   	}
 
-	    //Can't repeat symbol or 0. 
-	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) || btnVal == '0' && calcScreen.innerHTML.charAt(screenLength - 1) == '0' ) {
+	    //Can't repeat symbol or 0 when in first position. 
+	   	if( isNaN(btnVal) && isNaN( calcScreen.innerHTML.charAt(screenLength - 1) ) || screenLength == 1 && calcScreen.innerHTML == '0') {
 			var deleteLast = calcScreen.innerHTML.slice(0, -1);
 			calcScreen.innerHTML = deleteLast;
 	   	}
@@ -52,7 +51,6 @@ for (var i = 0; i < buttons.length; i++) {
 			calcScreen.innerHTML = eval(calcScreen.innerHTML);
 			clearScreen = true;
 			break;
-			
 		default:
 			calcScreen.innerHTML += btnVal;
 			break;
@@ -67,10 +65,6 @@ for (var i = 0; i < buttons.length; i++) {
 		if( screenLength >= 14 ) {
 			var maxChar = calcScreen.innerHTML.slice(0, 14);
 			calcScreen.innerHTML = maxChar;
-		  
 		}
-
-
-		
 	});
 };
